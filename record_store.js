@@ -16,12 +16,24 @@ RecordStore.prototype = {
   },
   // listInventory: function() {
   //   _(this.inventory).forEach(function(record){
-  //     console.log("test");
 
   //     // "Record artist: " + record.artist + ", Record title: " + record.title + ", Record price: £" + record.price;
   // //   })
   // }
-  
+  sellRecord: function(record) {
+    this.inventory.pop(record);
+    this.balance += record.price;
+  },
+  calculateInventoryValue: function() {
+    var inventoryValue = 0
+    _(this.inventory).forEach(function(record){
+      inventoryValue += record.price;
+    })
+    return inventoryValue;
+  },
+  financialReport: function() {
+    return "Inventory value: " + this.calculateInventoryValue() + " Store balance: " + this.balance;
+  }
 
 
 };
